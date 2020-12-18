@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RptIngreso" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa7943c9-bfdf-4bc9-b2d2-c21999ab1110">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     ingreso.`tipo_comprobante` AS ingreso_tipo_comprobante,
+     ingreso.`serie_comprobante` AS ingreso_serie_comprobante,
+     ingreso.`num_comprobante` AS ingreso_num_comprobante,
+     ingreso.`fecha` AS ingreso_fecha,
+     ingreso.`impuesto` AS ingreso_impuesto,
+     ingreso.`total` AS ingreso_total,
+     persona.`nombre` AS persona_nombre,
+     persona.`tipo_documento` AS persona_tipo_documento,
+     persona.`num_documento` AS persona_num_documento,
+     persona.`direccion` AS persona_direccion,
+     persona.`telefono` AS persona_telefono,
+     persona.`email` AS persona_email,
+     usuario.`nombre` AS usuario_nombre,
+     articulo.`codigo` AS articulo_codigo,
+     articulo.`nombre` AS articulo_nombre,
+     detalle_ingreso.`cantidad` AS detalle_ingreso_cantidad,
+     detalle_ingreso.`precio` AS detalle_ingreso_precio
+FROM
+     `articulo` articulo INNER JOIN `detalle_ingreso` detalle_ingreso ON articulo.`id` = detalle_ingreso.`articulo_id`
+     INNER JOIN `ingreso` ingreso ON detalle_ingreso.`ingreso_id` = ingreso.`id`
+     INNER JOIN `persona` persona ON ingreso.`persona_id` = persona.`id`
+     INNER JOIN `usuario` usuario ON ingreso.`usuario_id` = usuario.`id`]]>
+	</queryString>
+	<field name="ingreso_tipo_comprobante" class="java.lang.String"/>
+	<field name="ingreso_serie_comprobante" class="java.lang.String"/>
+	<field name="ingreso_num_comprobante" class="java.lang.String"/>
+	<field name="ingreso_fecha" class="java.sql.Timestamp"/>
+	<field name="ingreso_impuesto" class="java.math.BigDecimal"/>
+	<field name="ingreso_total" class="java.math.BigDecimal"/>
+	<field name="persona_nombre" class="java.lang.String"/>
+	<field name="persona_tipo_documento" class="java.lang.String"/>
+	<field name="persona_num_documento" class="java.lang.String"/>
+	<field name="persona_direccion" class="java.lang.String"/>
+	<field name="persona_telefono" class="java.lang.String"/>
+	<field name="persona_email" class="java.lang.String"/>
+	<field name="usuario_nombre" class="java.lang.String"/>
+	<field name="articulo_codigo" class="java.lang.String"/>
+	<field name="articulo_nombre" class="java.lang.String"/>
+	<field name="detalle_ingreso_cantidad" class="java.lang.Integer"/>
+	<field name="detalle_ingreso_precio" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
